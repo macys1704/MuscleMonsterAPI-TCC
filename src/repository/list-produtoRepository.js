@@ -29,16 +29,16 @@ export async function alterarProduto(id,produto){
         let comando = `
             update tb_produto 
                     nm_produto            = ?,
-                   vl_valor              = ?,
-                   vl_valor_promocional             = ?,
-                   nr_qtd_estoque        = ?,
-                   id_categoria          = ?,
-                   bt_disponivel         = ?,
-                   ds_descricao          = ?
-             where id_produto      = ?
+                   vl_valor               = ?,
+                   vl_valor_promocional   = ?,
+                   nr_qtd_estoque         = ?,
+                   id_categoria           = ?,
+                   bt_disponivel          = ?,
+                   ds_descricao           = ?,
+                  where id_produto        = ?
         `
       
-        let [resp] = await con.query(comando, 
+        let [resp] = await conexao.query(comando, 
           [
             produto.nome,
             produto.valor,
