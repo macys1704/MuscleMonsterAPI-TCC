@@ -9,4 +9,4 @@ server.use(cors())
 server.use(express.json())
 
 
-server.listen(process.env.PORT, () => console.log('API subiu'))
+server.listen(process.env.PORT, () => console.log('API subiu!!!'))
