@@ -1,4 +1,3 @@
-import { createConnection } from 'mysql2';
 import mysql from 'mysql2/promise';
 
 const conexao = await mysql.createConnection({
