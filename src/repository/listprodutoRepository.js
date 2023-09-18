@@ -2,16 +2,9 @@ import conexao from "./connection.js";
 
 export async function consultarProdutos(produto){
 
-    const comando = `select 
-    nm_produto          as produto,
-    vl_valor            as preco,
-    nr_qtd_estoque      as estoque,
-    ds_descricao        as descricao,
-    id_categoria        as categoria,
-    from tb_produtos
-    where nm_produto like ?`;
+    const comando = `select * from tb_produto`;
 
-    const [resposta] = await conexao.query(comando, ['%' + produto + '%']);
+    const [resposta] = await conexao.query(comando);
     return resposta;
 }
 

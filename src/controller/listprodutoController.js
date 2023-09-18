@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { consultarProdutos, deletarProduto} from "../repository/list-produtoRepository.js";
+import { consultarProdutos, deletarProduto} from "../repository/listprodutoRepository.js";
 
 let endpoints = Router();
 
@@ -18,8 +18,8 @@ endpoints.delete('/deletar-produto/:id', async (req, resp) => {
   });
 
   endpoints.get('/consultar-produto', async (req, resp) => {
-    let busca = req.query.busca ?? '';
-    let resposta = await consultar(busca)
+
+    let resposta = await consultarProdutos()
     resp.send(resposta);
   });
 
