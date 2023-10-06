@@ -38,7 +38,7 @@ endpoint.get('/listar/produto/:id',async (req, resp)=>{
 
         const id = req.params.id
         const resposta = await listarProduto(id)
-        
+        resp.send(resposta)
 
     } catch (err) {
         resp.send({

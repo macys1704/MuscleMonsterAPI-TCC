@@ -10,10 +10,10 @@ export async function InserirNovoProduto(produto) {
     return resposta;
 }
 
-export async function listarProduto(produto){
+export async function listarProduto(id){
 
     try {
-        let comando = `url_img         as imagem,
+        let comando = `select url_img         as imagem,
         nm_produto      as produto,
         ds_categoria    as categoria,
         vl_preco        as preco,
@@ -22,6 +22,8 @@ export async function listarProduto(produto){
         where id_produto = ? `;
     
         const [resposta] = await conexao.query(comando, [id]);
+
+        return resposta[0]
 
     } catch (err) {
         throw new Error(err.message);
