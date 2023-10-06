@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { InserirNovoProduto } from '../repository/add-produtoRepository.js';
+import { InserirNovoProduto, listarProduto } from '../repository/add-produtoRepository.js';
 
 let endpoint = Router();
 
@@ -30,10 +30,21 @@ endpoint.post('/inserir', async (req, resp) => {
             erro: err.message
         })
     }
-    
+   
+})
 
+endpoint.get('/listar/produto/:id',async (req, resp)=>{
+    try {
 
-    
+        const id = req.params.id
+        const resposta = await listarProduto(id)
+        
+
+    } catch (err) {
+        resp.send({
+            erro: err.message
+        })
+    }
 })
 
 export default endpoint
