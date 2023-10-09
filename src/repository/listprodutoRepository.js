@@ -52,7 +52,7 @@ export async function alterarProduto(id, produto) {
 
 export async function BuscarPorNome(nome) {
   const comando = `SELECT id_produto      as id,
-                          url_img         as img,
+                          url_img         as imagem,
                           nm_produto      as produto,
                           ds_categoria    as categoria,
                           vl_preco        as preco,
