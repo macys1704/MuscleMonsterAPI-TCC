@@ -1,25 +1,31 @@
 import { Router } from "express";
-import { NovoCadastro } from "../repository/cadastroRepository.js";
+import { NovoCadastro, consultar } from "../repository/cadastroRepository.js";
 
 let endpoint = Router();
 
 
-endpoint.post('/inserircadastro', async (req, resp) => {
+endpoint.post('/cadastro', async (req, resp) => {
     try {
-        const cliente = await req.body;
+        let cliente = req.body;
 
-        //validaçoes abaixo
+        if (!cliente.nome)
+        throw new Error('⚠ Nome obrigatório');
 
-        if(!cliente.cliente)
-            throw new Error('⚠ cliente obrigatório')
+        if (!cliente.telefone)
+        throw new Error('⚠ Telefone obrigatório');
 
-        if(!cliente.email)
-            throw new Error('⚠ email obrigatório')
+        if (!cliente.email)
+        throw new Error('⚠ Email obrigatório');
 
-        if(!cliente.telefone)
-            throw new Error('⚠ telefone obrigatorio')
-
-        const dados = await NovoCadastro(cliente)
+        if (!cliente.senha)
+        throw new Error('⚠ Senha obrigatório');
+  
+   
+        let r1 = await consultar(cliente.email);
+        if (r1.length > 0)
+        throw new Error('⚠ Email já cadastrado!');
+  
+        let dados = await NovoCadastro(cliente)
         resp.send(dados)
 
     } catch (err) {
@@ -27,10 +33,6 @@ endpoint.post('/inserircadastro', async (req, resp) => {
             erro: err.message
         })
     }
-    
-
-
-    
 })
 
 export default endpoint

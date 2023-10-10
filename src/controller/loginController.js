@@ -3,14 +3,18 @@ import { verificarLogin } from "../repository/loginRepository.js";
 
 const endpoint = Router();
 
-endpoint.get('/login', async (req, resp) => {
+endpoint.post('/login', async (req, resp) => {
   try {
-    const credencial = await verificarLogin();
-    resp.json(credencial);
+    let email = req.body.email;
+    let senha = req.body.senha;
+
+    let linha = await verificarLogin(email,senha)
+    if(linha == undefined){
+      throw new error ('Credenciais inválidas')
+    }
+    
   } catch (err) {
-    resp.status(400).send({
-        erro: err.message
-    });
+    resp.status(400).send({erro: err.message});
   }
 });
 
