@@ -27,3 +27,23 @@ select
         ;
 
 drop table tb_produto;
+
+create table tb_cadastro_cliente (
+	id_cliente          int primary key auto_increment,
+	nm_cliente          varchar(200),
+	ds_email            varchar(200),
+	ds_telefone         varchar(200),
+	ds_senha            varchar(200)
+);
+
+select * from tb_cadastro_cliente;
+
+
+drop table tb_cadastro_cliente;
+
+insert into tb_cadastro_cliente (nm_cliente, ds_email, ds_telefone, ds_senha) values (?, ?, ?, ?, ?);
+
+SELECT ds_email  as email, ds_senha AS senha
+      FROM tb_cadastro_cliente;
+
+ SELECT ds_email, ds_senha FROM tb_cadastro_cliente WHERE ds_email = ? and ds_senha = ?;
