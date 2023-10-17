@@ -3,14 +3,26 @@ import { verificarLogin } from "../repository/loginRepository.js";
 
 const endpoint = Router();
 
-endpoint.get('/login', async (req, resp) => {
+endpoint.post('/login', async (req, resp) => {
   try {
-    const credencial = await verificarLogin();
-    resp.json(credencial);
+    let {email,senha} = req.body;
+
+
+    let resposta = await verificarLogin(email,senha)
+
+    if(!email)
+    throw new Error('Email obrigatório')
+
+    if(!senha)
+    throw new Error('Email obrigatório')
+
+    if(resposta.length < 1)
+      throw new Error('Senha ou Email incorretos');
+
+      resp.status(204).send();
+    
   } catch (err) {
-    resp.status(400).send({
-        erro: err.message
-    });
+    resp.status(500).send({erro: err.message});
   }
 });
 

@@ -1,11 +1,17 @@
 import conexao from "./connection.js";
 
-export async function verificarLogin() {
+export async function verificarLogin(email,senha) {
 
     const comando = `
-      SELECT ds_email as email, ds_senha as senha
+      SELECT 
+      ds_email as email, 
+      ds_senha as senha
       FROM tb_cadastro_cliente
+      where ds_email = ?
+      and ds_senha = ?
     `;
-    const [resposta] = await conexao.query(comando);
-    resposta[0]
+    
+   const [dados] = await conexao.query(comando, [email,senha]);
+
+    return dados
 }
