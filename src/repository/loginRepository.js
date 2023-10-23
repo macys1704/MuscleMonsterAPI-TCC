@@ -6,7 +6,7 @@ export async function verificarLogin(email,senha) {
       SELECT 
       ds_email as email, 
       ds_senha as senha
-      FROM tb_cadastro_cliente
+      FROM tb_cliente
       where ds_email = ?
       and ds_senha = ?
     `;

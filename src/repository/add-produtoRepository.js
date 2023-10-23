@@ -17,7 +17,8 @@ export async function listarProduto(id){
         nm_produto      as produto,
         ds_categoria    as categoria,
         vl_preco        as preco,
-        qtd_estoque     as estoque
+        qtd_estoque     as estoque,
+        ds_descricap    as descricao
         from tb_produto
         where id_produto = ? `;
     
