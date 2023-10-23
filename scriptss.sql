@@ -8,9 +8,21 @@ create table tb_produto (
 	vl_valor decimal,
 	qtd_estoque int,
 	ds_categoria varchar(200),
-    url_img varchar(200),
-	ds_descricao varchar(200)
+	ds_descricao varchar(200),
+    id_imagem	int,
+    foreign key (id_imagem) references tb_imagem (id_imagem)
 );
+
+select * from tb_produto;
+drop table tb_produto;
+
+create table tb_imagem (
+	id_imagem	int primary key auto_increment,
+    ds_url		varchar(200)
+);
+
+select * from tb_imagem;
+drop table tb_imagem;
 
 create table tb_cliente (
 	id_cliente int primary key auto_increment,
@@ -21,6 +33,8 @@ create table tb_cliente (
 	id_endereco int,
     foreign key (id_endereco) references tb_endereco (id_endereco)
 );
+select * from tb_cliente;
+drop table tb_cliente;
 
 create table tb_endereco (
 	id_endereco int primary key auto_increment,
@@ -31,6 +45,9 @@ create table tb_endereco (
 	nr_numero int,
 	ds_complemento varchar(200)
 );
+
+select * from tb_endereco;
+drop table tb_endereco;
 
 
 create table tb_pedido(
@@ -45,6 +62,9 @@ foreign key (id_cliente) references tb_cliente (id_cliente),
 foreign key (id_endereço) references tb_endereco (id_endereco)
 );
 
+select * from tb_pedido;
+drop table tb_pedido;
+
 create table tb_item_pedido(
 id_item_pedido int primary key auto_increment,
 qtd_item int,
@@ -54,6 +74,8 @@ foreign key(id_pedido) references tb_pedido (id_pedido),
 foreign key (id_produto) references tb_produto (id_produto)
 );
 
+select * from tb_item_pedido;
+drop table tb_item_pedido;
 
 create table tb_carrinho (
 	id_carrinho int primary key auto_increment,
@@ -63,5 +85,7 @@ create table tb_carrinho (
     foreign key (id_produto) references tb_produto (id_produto)
 );
 
+select * from tb_carrinho;
+drop table tb_carrinho;
 
 
