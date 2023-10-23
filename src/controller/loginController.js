@@ -19,7 +19,7 @@ endpoint.post('/login', async (req, resp) => {
     if(resposta.length < 1)
       throw new Error('Senha ou Email incorretos');
 
-    resp.send(resposta);
+      resp.send(resposta);
     
   } catch (err) {
     resp.status(500).send({erro: err.message});
