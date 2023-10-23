@@ -5,7 +5,7 @@ const endpoint = Router();
 
 endpoint.post('/login', async (req, resp) => {
   try {
-    let { email, senha } = req.body;
+    let { email, senha } = req.body
 
 
     if (!email)
