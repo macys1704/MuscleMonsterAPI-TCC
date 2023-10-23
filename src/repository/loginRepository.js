@@ -4,8 +4,8 @@ export async function verificarLogin(email,senha) {
 
     const comando = `
       SELECT 
-      ds_email as email, 
-      ds_senha as senha
+        id_cliente as id,
+        ds_email as email
       FROM tb_cadastro_cliente
       where ds_email = ?
       and ds_senha = ?
@@ -13,5 +13,7 @@ export async function verificarLogin(email,senha) {
     
    const [dados] = await conexao.query(comando, [email,senha]);
 
-    return dados
+  let linha = dados[0]
+
+    return linha;
 }

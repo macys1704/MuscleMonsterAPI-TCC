@@ -5,24 +5,26 @@ const endpoint = Router();
 
 endpoint.post('/login', async (req, resp) => {
   try {
-    let {email,senha} = req.body;
+    let { email, senha } = req.body;
 
 
-    let resposta = await verificarLogin(email,senha)
+    if (!email)
+      throw new Error('Email obrigatório')
 
-    if(!email)
-    throw new Error('Email obrigatório')
+    if (!senha)
+      throw new Error('Senha obrigatório')
 
-    if(!senha)
-    throw new Error('Email obrigatório')
 
-    if(resposta.length < 1)
+
+    let resposta = await verificarLogin(email, senha)
+
+    if (resposta.length < 1)
       throw new Error('Senha ou Email incorretos');
 
-      resp.status(204).send();
-    
+    resp.send(resposta);
+
   } catch (err) {
-    resp.status(500).send({erro: err.message});
+    resp.status(500).send({ erro: err.message });
   }
 });
 
